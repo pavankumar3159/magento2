@@ -42,9 +42,9 @@ COPY auth.json /root/.composer/auth.json
 # Start PHP-FPM
 CMD ["php-fpm"]
 
-RUN composer create-project --repository-url=https://github.com/markshust/docker-magento.git magento2 /var/www/html
+RUN composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition /var/www/html
 # Set working directory
-WORKDIR /var/www/html/magento2/
+WORKDIR /var/www/html/project-community-edition/
 RUN php /bin/magento setup:install \
     --base-url="${MAGENTO_BASE_URL}" \
     --db-host="${DB_HOST}" \
