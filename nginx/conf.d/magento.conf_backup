@@ -1,0 +1,12 @@
+upstream fastcgi_backend {
+    server  127.0.0.1:9000;
+}
+
+server {
+    listen 80;
+    server_name 16.16.132.134;
+    set $MAGE_ROOT /usr/share/nginx/html;
+    set $MAGE_MODE developer; # or production
+
+    include /usr/share/nginx/html/project-community-edition/nginx.conf.sample;
+}
