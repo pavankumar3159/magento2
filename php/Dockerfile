@@ -46,7 +46,7 @@ CMD ["php-fpm"]
 RUN composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition 
 # RUN ls -la /var/www/html/project-community-edition/magento/project-community-edition/
 # RUN chmod +x /var/www/html/project-community-edition/bin/magento
-# RUN cd /var/www/html/project-community-edition && php /bin/magento setup:install \
+# RUN cd /var/www/html/project-community-edition &&  php /bin/magento setup:install \
 #     --base-url="${MAGENTO_BASE_URL}" \
 #     --db-host="${DB_HOST}" \
 #     --db-name="${DB_NAME}" \
