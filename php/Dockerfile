@@ -1,9 +1,6 @@
 FROM php:8.1-fpm
-
-# Setting PHP memory limit
+RUN addgroup --system clp && adduser --system --no-create-home --ingroup clp test-ssh
 RUN echo "memory_limit = 2G" > /usr/local/etc/php/conf.d/memory-limit.ini
-
-# Install OS packages
 RUN apt-get update && apt-get install -y \
     libfreetype6-dev \
     libjpeg62-turbo-dev \
@@ -17,8 +14,6 @@ RUN apt-get update && apt-get install -y \
     git \
     unzip \
     curl
-
-# Install PHP extensions
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg
 RUN docker-php-ext-install -j$(nproc) gd \
     bcmath \
@@ -29,21 +24,14 @@ RUN docker-php-ext-install -j$(nproc) gd \
     zip \
     pdo_mysql \
     sockets
-
-
-# Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-
-# Set working directory
 WORKDIR /var/www/html/
-
-# Copy the Composer auth.json if you have one
 COPY auth.json /root/.composer/auth.json
-
-# Start PHP-FPM
+RUN chown -R test-ssh:clp /var/www/html/
+USER test-ssh
 CMD ["php-fpm"]
 
-RUN composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition 
+#RUN composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition
 # RUN ls -la /var/www/html/project-community-edition/magento/project-community-edition/
 # RUN chmod +x /var/www/html/project-community-edition/bin/magento
 # RUN cd /var/www/html/project-community-edition &&  php /bin/magento setup:install \
@@ -65,4 +53,4 @@ RUN composer create-project --repository-url=https://repo.magento.com/ magento/p
 #     --elasticsearch-port="${ELASTICSEARCH_PORT}" \
 #     --use-rewrites="${USE_REWRITES}" \
 #     --backend-frontname="${BACKEND_FRONTNAME}" \
-#     --use-sample-data  
+#     --use-sample-data
