@@ -7,7 +7,7 @@ RUN apt-get update && \
 
 # Create a directory for SSL certificates
 RUN mkdir /etc/nginx/ssl
-RUN mkdir /var/www/html
+# RUN mkdir /var/www/html
 
 # Copy the Varnish and Nginx configuration files
 COPY ./default.vcl /etc/varnish/default.vcl
