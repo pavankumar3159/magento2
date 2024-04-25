@@ -34,7 +34,8 @@ RUN docker-php-ext-install -j$(nproc) gd \
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-
+# Set working directory
+WORKDIR /var/www/html/
 
 # Copy the Composer auth.json if you have one
 COPY auth.json /root/.composer/auth.json
@@ -42,10 +43,8 @@ COPY auth.json /root/.composer/auth.json
 # Start PHP-FPM
 CMD ["php-fpm"]
 
-RUN composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition /var/www/html
-# Set working directory
-WORKDIR /var/www/html/project-community-edition/
-RUN php /bin/magento setup:install \
+RUN composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition 
+RUN cd /var/www/html/project-community-edition && php /bin/magento setup:install \
     --base-url="${MAGENTO_BASE_URL}" \
     --db-host="${DB_HOST}" \
     --db-name="${DB_NAME}" \
