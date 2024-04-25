@@ -11,9 +11,9 @@ RUN mkdir /etc/nginx/ssl
 
 # Copy the Varnish and Nginx configuration files
 COPY ./default.vcl /etc/varnish/default.vcl
-COPY ./nginx.conf /etc/nginx/nginx.conf
+# COPY ./nginx.conf /etc/nginx/nginx.conf
 # COPY ./default-ssl.conf /etc/nginx/sites-available/default.conf
-COPY ./ssl/* /etc/nginx/ssl/
+# COPY ./ssl/* /etc/nginx/ssl/
 
 # Set environment variables for Varnish
 ENV VARNISH_SIZE 256m
