@@ -44,23 +44,24 @@ COPY auth.json /root/.composer/auth.json
 CMD ["php-fpm"]
 
 RUN composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition 
-RUN cd /var/www/html/project-community-edition/magento/project-community-edition && php /bin/magento setup:install \
-    --base-url="${MAGENTO_BASE_URL}" \
-    --db-host="${DB_HOST}" \
-    --db-name="${DB_NAME}" \
-    --db-user="${DB_USER}" \
-    --db-password="${DB_PASSWORD}" \
-    --admin-firstname="${ADMIN_FIRSTNAME}" \
-    --admin-lastname="${ADMIN_LASTNAME}" \
-    --admin-email="${ADMIN_EMAIL}" \
-    --admin-user="${ADMIN_USER}" \
-    --admin-password="${ADMIN_PASSWORD}" \
-    --language="${LANGUAGE}" \
-    --currency="${CURRENCY}" \
-    --timezone="${TIMEZONE}" \
-    --search-engine="${SEARCH_ENGINE}" \
-    --elasticsearch-host="${ELASTICSEARCH_HOST}" \
-    --elasticsearch-port="${ELASTICSEARCH_PORT}" \
-    --use-rewrites="${USE_REWRITES}" \
-    --backend-frontname="${BACKEND_FRONTNAME}" \
-    --use-sample-data  
+RUN ls -la /var/www/html/project-community-edition/magento/project-community-edition/
+# RUN cd /var/www/html/project-community-edition/magento/project-community-edition && php /bin/magento setup:install \
+#     --base-url="${MAGENTO_BASE_URL}" \
+#     --db-host="${DB_HOST}" \
+#     --db-name="${DB_NAME}" \
+#     --db-user="${DB_USER}" \
+#     --db-password="${DB_PASSWORD}" \
+#     --admin-firstname="${ADMIN_FIRSTNAME}" \
+#     --admin-lastname="${ADMIN_LASTNAME}" \
+#     --admin-email="${ADMIN_EMAIL}" \
+#     --admin-user="${ADMIN_USER}" \
+#     --admin-password="${ADMIN_PASSWORD}" \
+#     --language="${LANGUAGE}" \
+#     --currency="${CURRENCY}" \
+#     --timezone="${TIMEZONE}" \
+#     --search-engine="${SEARCH_ENGINE}" \
+#     --elasticsearch-host="${ELASTICSEARCH_HOST}" \
+#     --elasticsearch-port="${ELASTICSEARCH_PORT}" \
+#     --use-rewrites="${USE_REWRITES}" \
+#     --backend-frontname="${BACKEND_FRONTNAME}" \
+#     --use-sample-data  
