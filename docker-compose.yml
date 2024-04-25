@@ -15,8 +15,6 @@ services:
     volumes:
       - ./php:/var/www/html
       - ./php-fpm:/etc/php/8.1/fpm
-    environment:
-      - =value
     depends_on:
       - db
 
