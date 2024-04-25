@@ -12,7 +12,7 @@ RUN mkdir /var/www/html
 # Copy the Varnish and Nginx configuration files
 COPY ./nginx/default.vcl /etc/varnish/default.vcl
 COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
-COPY ./nginx/default-ssl.conf /etc/nginx/sites-available/default
+COPY ./nginx/default-ssl.conf /etc/nginx/sites-available/default.conf
 COPY ./nginx/ssl/* /etc/nginx/ssl/
 
 # Set environment variables for Varnish
