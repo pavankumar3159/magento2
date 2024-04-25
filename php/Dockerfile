@@ -44,7 +44,7 @@ COPY auth.json /root/.composer/auth.json
 CMD ["php-fpm"]
 
 RUN composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition 
-RUN ls -la /var/www/html/project-community-edition/magento/project-community-edition/
+# RUN ls -la /var/www/html/project-community-edition/magento/project-community-edition/
 # RUN cd /var/www/html/project-community-edition/magento/project-community-edition && php /bin/magento setup:install \
 #     --base-url="${MAGENTO_BASE_URL}" \
 #     --db-host="${DB_HOST}" \
