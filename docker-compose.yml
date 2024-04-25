@@ -36,6 +36,7 @@ services:
       - BACKEND_FRONTNAME=${BACKEND_FRONTNAME}
     depends_on:
       - db
+      - elasticsearch
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
