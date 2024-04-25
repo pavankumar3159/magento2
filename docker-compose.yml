@@ -1,6 +1,6 @@
 services:
   nginx:
-    buils:
+    build:
       context: ./nginx
     volumes:
       - ./nginx:/etc/nginx
